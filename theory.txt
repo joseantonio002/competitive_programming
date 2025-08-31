@@ -1,0 +1,39 @@
+QUICK REVIEW C++
+
+1º) Input and Output
+
+./main < input.txt > output.txt To try multiline inputs we can store them in a text file and do this, also to check multiline output 
+
+To make cin and cout faster:
+
+#include <bits/stdc++.h> or include only the libraries we need #include <cstdio> #include <iostream>
+
+main(){
+std::ios::sync_with_stdio(false);
+cin.tie(nullptr);
+
+cin:
+every time you do cin << you ask for an input, you can do cin >> x >> y multiple times in the same sentence
+  cin >> numcasos;
+  for (int i= 0; i<numcasos; i++) {
+    cin >> L >> N >> M;
+
+cout:
+cout << just output whatever, it doesnt add newlines or anything if we do more than one, it outputs one thing after the other
+
+
+2º) Variables:
+
+[const] type variableName = value;
+int x = 5, y = 6, z = 50;
+int x, y, z;
+x = y = z = 50;
+const constant = 8
+
+3º) Data types:
+
+bool	1 byte	Stores true or false values
+char	1 byte	Stores a single character/letter/number, or ASCII values SINGLE QUOTES char a = 'A' Alternatively, if you are familiar with ASCII, you can use ASCII values to display certain characters: char a = 65 cout << a
+int	2 or 4 bytes	Stores whole numbers, without decimals
+float	4 bytes	Stores fractional numbers, containing one or more decimals. Sufficient for storing 6-7 decimal digits
+double	8 bytes	Stores fractional numbers, containing one or more decimals. Sufficient for storing 15 decimal digits

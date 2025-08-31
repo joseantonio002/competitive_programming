@@ -1,0 +1,1 @@
+I will be preparing for the competitive programming competition in Murcia, [OMP+AdaByron Murcia 2025](https://onlinejudge.inf.um.es/#ver), taken place 03/10/2025

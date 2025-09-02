@@ -1,13 +1,15 @@
-#include <cstdio>
-#include <iostream>
-#include <string>
-using namespace std;
+//#include <cstdio>
+//#include <iostream>
+//#include <string>
+#include <bits/stdc++.h>
 
 
 int main() {
-  string s;
-  cin >> s;
-  cout << s;
+  std::string s = "hello waterfallwaterfall at all nothing";
+  std::cout << std::to_string(2.323);
+  std::pair<int, int> p;
+  p = {8, 8};
+  std::cout << p.first;
   return 0;
 }
 

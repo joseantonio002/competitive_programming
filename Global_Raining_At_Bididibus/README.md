@@ -72,3 +72,8 @@ st.size() > 0 ? count++; st.pop() : NULL;
 st.size() > 0 ? (count++, st.pop()) : (void)0;
 
 (count++, st.pop()) uses the comma operator, which evaluates count++, then st.pop(), and returns the result of st.pop().(void)0 is a common idiom for “do nothing.”
+
+Similar problems:
+
+Trapping Rain Water (LeetCode #42)\
+Largest Rectangle in Histogram (LeetCode #84)

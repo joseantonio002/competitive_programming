@@ -60,6 +60,220 @@ int n = stoi("123");
 double d = stod("3.14");
 string x = to_string(42);
 
+stack, pair, vector
+
 The auto keyword automatically detects the type of a variable based on the value you assign to it.
 It helps you write cleaner code and avoid repeating types, especially for long or complex types.
 
+4º) Conditional Flow and statements:
+
+C++ has the following conditional statements:
+
+Use if to specify a block of code to be executed, if a specified condition is true
+Use else to specify a block of code to be executed, if the same condition is false
+Use else if to specify a new condition to test, if the first condition is false
+Use switch to specify many alternative blocks of code to be executed
+
+Loops:
+
+while (condition) {
+  // code block to be executed
+}
+
+do {
+  // code block to be executed
+}
+while (condition);
+
+for (statement 1; statement 2; statement 3) {
+  // code block to be executed
+}
+
+for (type variableName : arrayName) {
+  // code block to be executed
+}
+
+5º) Arrays, vectors, Structures (struct) and enum:
+
+  Arrays we almost never use them, only when speed/memory critical applications (not our case)
+
+Vectors (std::vector)
+Dynamic array (resizable at runtime).
+Part of the STL (Standard Template Library).
+Defined as:
+#include <vector>
+vector<int> v;             // empty
+vector<int> v(5, 10);      // {10, 10, 10, 10, 10}
+
+v.size();        // number of elements
+v.empty();       // true if empty
+v.clear();       // remove all elements
+v.push_back(10); // add at end
+v.pop_back();    // remove last element
+
+v[0];            // direct access (no bounds check)
+v.at(0);         // bounds-checked access
+v.front();       // first element
+v.back();        // last element
+
+// Classic for
+for (int i = 0; i < (int)v.size(); i++) cout << v[i];
+// Range-based for
+for (int x : v) cout << x << " ";
+// With iterators
+for (auto it = v.begin(); it != v.end(); ++it) cout << *it;
+
+sort(v.begin(), v.end());                 // ascending
+sort(v.rbegin(), v.rend());               // descending
+
+bool exists = binary_search(v.begin(), v.end(), x); // requieres sorted vector
+auto it = lower_bound(v.begin(), v.end(), x);  // First element >= x:
+auto it = upper_bound(v.begin(), v.end(), x);  // First element > x
+
+v.insert(v.begin() + 2, 99);          // insert at position 2
+v.erase(v.begin() + 3);              // erase element at position 3
+v.erase(v.begin() + 1, v.begin() + 4); // erase range [1,4)
+reverse(v.begin(), v.end());
+
+Pro tips for competitive programming:
+vector<int> v(n, 0);  // Fast initialization 
+
+v.clear(); // clear and free memory
+v.shrink_to_fit();
+
+vector<vector<int>> grid(n, vector<int>(m, 0)); // 2D vectors
+
+  struct:
+
+Structures (also called structs) are a way to group several related variables into one place. Each variable in the structure is known as a 
+member of the structure. Unlike an array, a structure can contain many different data types: int, string, bool, etc.
+struct NameofStructType {             // Structure declaration
+  int myNum;         // Member (int variable)
+  string myString;   // Member (string variable)
+} myStructure;       // Structure variable
+
+
+  enum:
+
+An enum is a special type that represents a group of constants (unchangeable values).
+enum Level {
+  LOW = 25,
+  MEDIUM = 50,
+  HIGH = 75
+};
+enum Level myVar;
+
+
+6º) Pointers and references
+
+We dont need pointers in competitive programming, but for a quick recap:
+
+A reference variable is an alias for an existing variable. It is created using the & operator:
+string food = "Pizza";  // food variable
+string &meal = food;    // reference to food
+
+In the example from the previous page, the & operator was used to create a reference variable. But it can also be used to get the 
+memory address of a variable; which is the location of where the variable is stored on the computer.
+string food = "Pizza";
+cout << &food; // Outputs 0x6dfed4
+
+A pointer however, is a variable that stores the memory address as its value.
+string food = "Pizza";  // A food variable of type string
+string* ptr = &food;    // A pointer variable, with the name ptr, that stores the address of food
+// Dereference: Output the value of food with the pointer (Pizza)
+cout << *ptr << "\n";
+
+When are references used in Competitive Programming:
+// Passing large structures as arguments
+void process(const vector<int>& v) {
+    // avoids copying the whole vector
+}
+// Modifying the variable passed as argument
+void increment(int& x) {
+    x++;
+}
+// Range-based loops
+for (auto& x : v) x++;   // modify vector elements directly
+
+7º) Functions
+
+returnType(void, int, float...) functionName(parameter_list) {
+  // code to be executed
+}
+
+Function overloading allows multiple functions to have the same name, as long as their parameters are different in type or number:
+
+  Lambda functions:
+
+Lambda expressions' main purpose was to replace the functions in callbacks by providing inline definitions. Following are the common applications of lambda expressions in C++
+
+Inline, Anonymous Functions: Write small functions directly where needed without naming them.
+STL Algorithms: Pass custom comparison or transformation logic to algorithms like sort, for_each, etc.
+Callbacks and Event Handling: Use lambdas as callbacks for asynchronous operations or event handlers.
+Custom Comparators in Containers: Use lambdas as comparators for containers like priority_queue, set, etc.
+
+[capture-clause] (parameters) -> return-type { 
+    // definition
+}
+Capture Clause
+
+A lambda expression can have more power than an ordinary function by having access to variables from the enclosing scope. 
+We can capture external variables from the enclosing scope in three ways using capture clause:
+[&]: capture all external variables by reference.
+[=]: capture all external variables by value.
+[a, &b]: capture 'a' by value and 'b' by reference.
+A lambda with an empty capture clause [] can only access variables which are local to it.
+
+int main() {
+    vector<int> v1, v2;
+
+    // Capture v1 and v2 by reference
+    auto byRef = [&] (int m) {
+        v1.push_back(m);
+        v2.push_back(m);
+    };
+    
+    // Capture v1 and v2 by value, we have to put mutable so it can change the vectors inside the lambda function
+    auto byVal = [=] (int m) mutable {
+        v1.push_back(m);
+        v2.push_back(m);
+    };
+    
+    // Capture v1 by reference and v2 by reference
+    auto mixed = [&v1, &v2] (int m) {
+        v1.push_back(m);
+        v2.push_back(m);
+    };
+
+8º) OOP/structs
+
+No, full OOP (Object-Oriented Programming) is rarely needed in competitive programming, but basic classes and structs are sometimes 
+useful for organization.
+
+struct Edge {
+    int u, v, w;
+    Edge(int u, int v, int w): u(u), v(v), w(w) {}
+};
+
+Sorting by custom criteria:
+struct Edge {
+    int u, v, w;
+    bool operator<(const Edge& other) const {
+        return w < other.w;
+    }
+}; sort(edges.begin(), edges.end());
+
+
+Geometry problems
+For points, lines, rectangles, you might use structs or simple classes for clarity.
+
+9º) Data Structures & STL 
+
+Data Structure	Description
+Vector	Stores elements like an array but can dynamically change in size. Adding and removing of elements are usually done at the end. Elements can be accessed by index.
+List	Stores elements sequentially, where each element is connected to the next. Adding and removing of elements can be done at both ends. Not accessible by index.
+Stack	Stores elements in a specific order, called LIFO (Last In, First Out), where elements can only be added and removed from the top. Not accessible by index.
+Queue	Stores elements in a specific order, called FIFO (First In, First Out), where elements are added at the end and removed from the front. Not accessible by index.
+Deque	Stores elements in a double-ended queue, where elements can be added and removed from both ends. Elements can be accessed by index.
+Set	Stores unique elements. Not accessible by index.
+Map	Stores elements in "key/value" pairs. Accessible by keys (not by index).

@@ -277,3 +277,4 @@ Queue	Stores elements in a specific order, called FIFO (First In, First Out), wh
 Deque	Stores elements in a double-ended queue, where elements can be added and removed from both ends. Elements can be accessed by index.
 Set	Stores unique elements. Not accessible by index.
 Map	Stores elements in "key/value" pairs. Accessible by keys (not by index).
+

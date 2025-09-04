@@ -135,3 +135,5 @@ So we don’t care about the raw difference (13, -7, 20, -15 …).
 We only care about that difference modulo 7, which reduces it to a neat number between 0 and 6.
 
 # Miscellaneous
+
+If the number is smaller than the modulo (e.g 2 % 7) the result is the number

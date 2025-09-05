@@ -66,7 +66,7 @@ int main() {
         balloon cb = not_popped[j];
         float xpos = cb.x, ypos = xpos * tan(angle_r);
         float dist = sqrt(pow(xpos - cb.x, 2) + pow(ypos - cb.y, 2));
-        if (dist < cb.r || float_eq(dist, cb.r)) {
+        if (dist < cb.r || float_eq(dist, cb.r)) { // comprobar todas las x del globo (puede ser que roze por delante o por detras)
           laser_fired.push_back(i);
           popped.push_back(j);
         }

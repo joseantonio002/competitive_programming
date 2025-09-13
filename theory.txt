@@ -151,6 +151,24 @@ v.shrink_to_fit();
 
 vector<vector<int>> grid(n, vector<int>(m, 0)); // 2D vectors
 
+SELECT ELEMENTS FROM VECTOR BETWEEN INDEXES LIKE PYTHON SLICING v[0:8]:
+
+std::vector<int> v = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+std::vector<int> slice(v.begin() + 0, v.begin() + 8); // Elements 0 to 7
+
+std::vector<int> v = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+std::vector<int> slice;
+slice.assign(v.begin() + 0, v.begin() + 8); // Elements 0 to 7
+
+template<typename T>
+std::vector<T> slice(const std::vector<T>& v, size_t start, size_t end) {
+    return std::vector<T>(v.begin() + start, v.begin() + end);
+}
+// Usage:
+std::vector<int> v = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+auto result = slice(v, 0, 8); // Elements 0 to 7
+
+
   struct:
 
 Structures (also called structs) are a way to group several related variables into one place. Each variable in the structure is known as a 
